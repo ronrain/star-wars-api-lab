@@ -5,6 +5,7 @@ const ShipDetailsWithLocationHook = () => {
   const location = useLocation()
   const [shipDetails, setShipdetails] = useState(location.state.ship)
 
+  if (!shipDetails) return <h2>please wait... loading ships...</h2>
 
   return ( 
     <div className={StyleSheet.shipDetails}>

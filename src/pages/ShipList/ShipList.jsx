@@ -10,7 +10,7 @@ const ShipList = () => {
   useEffect(() => {
     const fetchShipData = async () => {
       const shipData = await apiService.getStarShips()
-      setShips(shipData)
+      setShips(shipData.results)
     }
     fetchShipData()
   }, [])

@@ -1,6 +1,7 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import * as apiService from '../../services/apiService'
+import ShipDetails from '../../components/ShipDetails/ShipDetails'
 
 const ShipDetailsWithoutLocationHook = () => {
   const {shipId} = useParams()
@@ -12,22 +13,15 @@ const ShipDetailsWithoutLocationHook = () => {
       setShipDetails(shipData)
     }
     fetchShipDetails()
-  })
+  }, [shipId])
 
-  if (!shipDetails) return <h2>please wait... loading ships...</h2>
+  if (!shipDetails.name) return <h2>please wait... loading ships...</h2>
 
   return (  
-  <>
-  <div>
-    <h1>Name: {shipDetails.name}</h1>
-    <h2>Model: {shipDetails.model}</h2>
-    <h2>Made by: {shipDetails.manufacturer}</h2>
-    <h2>Hyperdrive rating: {shipDetails.hyperdrive_rating}</h2>
-    <Link to='/ships'><button>Back</button> </Link>
-  </div> 
-  </>
-
-  );
+    <ShipDetails 
+      shipDetails={shipDetails} 
+    />
+  )
 }
 
 export default ShipDetailsWithoutLocationHook;
